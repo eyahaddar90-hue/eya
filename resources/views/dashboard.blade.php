@@ -58,6 +58,13 @@
        Commencer maintenant
     </a>
 </div>
+{{-- Footer --}}
+<footer class="bg-gray-100 mt-20">
+    <div class="max-w-7xl mx-auto py-6 px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-gray-600">
+        <p class="text-sm">&copy; {{ date('Y') }} TaskManager. Tous droits réservés.</p>
+    </div>
+</footer>
+
 
 
         </div>
