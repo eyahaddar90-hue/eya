@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 use App\Models\Team;
 use App\Models\Task;
 
@@ -13,28 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Créer 5 utilisateurs
+        User::factory(5)->create();
+
         // Créer 3 équipes
-        Team::create(['name' => 'Équipe Alpha']);
-        Team::create(['name' => 'Équipe Beta']);
-        Team::create(['name' => 'Équipe Gamma']);
-
-        // Créer quelques tâches pour ces équipes
-        Task::create([
-            'title' => 'Tâche 1',
-            'description' => 'Description de la tâche 1',
-            'team_id' => 1,
-        ]);
-
-        Task::create([
-            'title' => 'Tâche 2',
-            'description' => 'Description de la tâche 2',
-            'team_id' => 2,
-        ]);
-
-        Task::create([
-            'title' => 'Tâche 3',
-            'description' => 'Description de la tâche 3',
-            'team_id' => 3,
-        ]);
+        Team::factory(3)->create()->each(function ($team) {
+            // Pour chaque équipe, créer 3 tâches
+            Task::factory(3)->create([
+                'team_id' => $team->id,
+            ]);
+        });
     }
 }

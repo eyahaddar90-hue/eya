@@ -9,11 +9,8 @@ class Task extends Model
 {
     use HasFactory;
 
-   protected $fillable = ['title', 'description', 'due_date', 'team_id', 'status', 'user_id'];
+ protected $fillable = ['title', 'description', 'due_date', 'team_id', 'status', 'user_id', 'file'];
 
-    protected $casts = [
-        'due_date' => 'date', // <<< ceci transforme automatiquement en Carbon
-    ];
 
     // Une tâche appartient à une équipe
     public function team()

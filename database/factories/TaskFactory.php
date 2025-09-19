@@ -10,14 +10,14 @@ class TaskFactory extends Factory
 {
     protected $model = Task::class;
 
-    public function definition()
+   public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
-            'due_date' => $this->faker->dateTimeBetween('now', '+1 month'),
-            'team_id' => Team::factory(), // crée une équipe automatiquement
-            'status' => 'open',
+            'title' => fake()->sentence(3),
+            'description' => fake()->paragraph(),
+            'due_date' => fake()->dateTimeBetween('now', '+1 month'),
+            'user_id' => \App\Models\User::factory(), // assigne une tâche à un utilisateur
+            'team_id' => \App\Models\Team::factory(), // si tu as une relation team-task
         ];
     }
 }
