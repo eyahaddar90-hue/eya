@@ -1,3 +1,301 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Variables CSS personnalisées */
+:root {
+  --primary-navy: #0f172a;
+  --primary-blue: #1e40af;
+  --accent-blue: #3b82f6;
+  --light-blue: #dbeafe;
+  --success-green: #10b981;
+  --warning-orange: #f59e0b;
+  --error-red: #ef4444;
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+}
+
+/* Animations personnalisées */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Classes utilitaires personnalisées */
+.animate-slide-in-up {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Styles de cartes modernes */
+.modern-card {
+  @apply bg-white rounded-xl shadow-sm border border-neutral-200 hover:shadow-md transition-all duration-200;
+}
+
+.modern-card:hover {
+  transform: translateY(-1px);
+}
+
+/* Boutons modernes */
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md;
+}
+
+.btn-secondary {
+  @apply bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium px-4 py-2 rounded-lg transition-all duration-200;
+}
+
+.btn-ghost {
+  @apply text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 font-medium px-3 py-2 rounded-lg transition-all duration-200;
+}
+
+/* Badges de statut */
+.status-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.status-open {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-closed {
+  @apply bg-neutral-100 text-neutral-800;
+}
+
+.status-in-progress {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.status-urgent {
+  @apply bg-red-100 text-red-800;
+}
+
+/* Styles de navigation */
+.nav-link {
+  @apply flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200;
+}
+
+.nav-link.active {
+  @apply bg-blue-50 text-blue-700 border-r-2 border-blue-700;
+}
+
+.nav-link:not(.active) {
+  @apply text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50;
+}
+
+/* Styles de formulaires */
+.form-input {
+  @apply block w-full px-3 py-2 border border-neutral-300 rounded-lg shadow-sm placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+}
+
+.form-textarea {
+  @apply block w-full px-3 py-2 border border-neutral-300 rounded-lg shadow-sm placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none;
+}
+
+.form-select {
+  @apply block w-full px-3 py-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+}
+
+/* Styles de grille responsive */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Styles de sidebar */
+.sidebar {
+  @apply bg-white border-r border-neutral-200 h-full;
+}
+
+.sidebar-header {
+  @apply p-6 border-b border-neutral-200;
+}
+
+.sidebar-nav {
+  @apply p-4 space-y-1;
+}
+
+/* Styles de header */
+.page-header {
+  @apply bg-white border-b border-neutral-200 px-6 py-4;
+}
+
+.page-title {
+  @apply text-2xl font-bold text-neutral-900;
+}
+
+.page-subtitle {
+  @apply text-sm text-neutral-600 mt-1;
+}
+
+/* Styles de modal */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50;
+}
+
+.modal-content {
+  @apply bg-white rounded-xl shadow-xl max-w-md w-full max-h-screen overflow-y-auto;
+}
+
+.modal-header {
+  @apply px-6 py-4 border-b border-neutral-200;
+}
+
+.modal-body {
+  @apply px-6 py-4;
+}
+
+.modal-footer {
+  @apply px-6 py-4 border-t border-neutral-200 flex justify-end space-x-3;
+}
+
+/* Styles de notification */
+.notification {
+  @apply fixed top-4 right-4 bg-white border border-neutral-200 rounded-lg shadow-lg p-4 max-w-sm z-50 animate-slide-in-up;
+}
+
+.notification.success {
+  @apply border-green-200 bg-green-50;
+}
+
+.notification.error {
+  @apply border-red-200 bg-red-50;
+}
+
+.notification.warning {
+  @apply border-orange-200 bg-orange-50;
+}
+
+/* Styles de loading */
+.loading-spinner {
+  @apply inline-block w-4 h-4 border-2 border-neutral-300 border-t-blue-600 rounded-full animate-spin;
+}
+
+.loading-skeleton {
+  @apply bg-neutral-200 rounded animate-pulse;
+}
+
+/* Styles de drag and drop */
+.draggable {
+  @apply cursor-move;
+}
+
+.draggable:hover {
+  @apply shadow-lg;
+}
+
+.drop-zone {
+  @apply border-2 border-dashed border-neutral-300 rounded-lg p-4 transition-colors duration-200;
+}
+
+.drop-zone.active {
+  @apply border-blue-500 bg-blue-50;
+}
+
+/* Styles responsive */
+@media (max-width: 640px) {
+  .page-header {
+    @apply px-4 py-3;
+  }
+  
+  .sidebar {
+    @apply fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full transition-transform duration-300;
+  }
+  
+  .sidebar.open {
+    @apply translate-x-0;
+  }
+}
+
+/* Styles d'accessibilité */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+/* Styles de transition */
+.transition-smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Styles de gradient */
+.gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.gradient-warning {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.gradient-error {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
